@@ -24,7 +24,7 @@ class Textfieldpage extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labeltext,
         labelStyle: TextStyle(
-          color: Colors.black,
+          color: Colors.grey,
         ),
         // border: varborder,
         //focusedBorder: varborder,
@@ -32,6 +32,46 @@ class Textfieldpage extends StatelessWidget {
         filled: true,
         fillColor: Colors.white,
         focusColor: Colors.white,
+        contentPadding: const EdgeInsets.all(8),
+      ),
+      keyboardType: texttype,
+      obscureText: pass,
+    );
+  }
+}
+
+class Textfieldpage2 extends StatelessWidget {
+  final TextEditingController textcontroller;
+
+  final String labeltext;
+  final bool pass;
+  final TextInputType texttype;
+  const Textfieldpage2(
+      {Key? key,
+      required this.textcontroller,
+      required this.labeltext,
+      this.pass = false,
+      required this.texttype})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final varborder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+    );
+    return TextField(
+      controller: textcontroller,
+      decoration: InputDecoration(
+        labelText: labeltext,
+        labelStyle: TextStyle(
+          color: Colors.grey,
+        ),
+        border: varborder,
+        focusedBorder: varborder,
+        enabledBorder: varborder,
+        filled: true,
+        fillColor: Colors.white,
+        focusColor: Colors.black,
         contentPadding: const EdgeInsets.all(8),
       ),
       keyboardType: texttype,

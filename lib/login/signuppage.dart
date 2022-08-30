@@ -2,6 +2,7 @@ import 'package:facebook_2/Widgets/textfiled.dart';
 import 'package:flutter/material.dart';
 
 import '../Widgets/DatePicker.dart';
+import '../Widgets/Radiobutton.dart';
 import '../resources/Appimages.dart';
 import '../resources/color_palette.dart';
 
@@ -41,7 +42,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 50,
+                    height: 20,
                   ),
                   Container(
                     height: 80,
@@ -97,8 +98,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   SizedBox(
                     height: 10,
                   ),
+                  Radiochecker(),
                   SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   InkWell(
                     onTap: () {

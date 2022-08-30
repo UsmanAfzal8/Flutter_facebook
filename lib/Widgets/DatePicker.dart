@@ -27,11 +27,56 @@ class _CustomdatepickerState extends State<Customdatepicker> {
   int dropdownValue = 1;
   String monthdropdown = 'Jan';
   int yeardropdownValue = 2000;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     Listupdates();
+    updatedate();
+  }
+
+  bool isLeapYear(int year) {
+    if (year % 4 == 0) {
+      if (year % 100 == 0) {
+        if (year % 400 == 0) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  void updatedate() {
+    if (monthdropdown == 'Apr' ||
+        monthdropdown == 'Jun' ||
+        monthdropdown == 'Sep' ||
+        monthdropdown == 'Nov') {
+      if (dropdownValue == 31) {
+        setState(() {
+          dropdownValue = 30;
+        });
+      }
+    } else if (monthdropdown == 'Feb') {
+      if (isLeapYear(yeardropdownValue) == true) {
+        if (dropdownValue > 29) {
+          setState(() {
+            dropdownValue = 29;
+          });
+        }
+      } else {
+        if (dropdownValue > 28) {
+          setState(() {
+            dropdownValue = 28;
+          });
+        }
+      }
+    }
   }
 
   void Listupdates() {
@@ -77,11 +122,14 @@ class _CustomdatepickerState extends State<Customdatepicker> {
           'Date of birth?',
           style: TextStyle(color: Colors.white),
         ),
+        SizedBox(
+          height: 10,
+        ),
         Row(
           children: [
             SizedBox(
               width: 80,
-              height: 50,
+              height: 60,
               child: DropdownButtonFormField<int>(
                 dropdownColor: Colors.white,
                 iconEnabledColor: Colors.black,
@@ -119,7 +167,7 @@ class _CustomdatepickerState extends State<Customdatepicker> {
             ),
             SizedBox(
               width: 80,
-              height: 50,
+              height: 60,
               child: DropdownButtonFormField<String>(
                 dropdownColor: Colors.white,
                 iconEnabledColor: Colors.black,
@@ -140,6 +188,8 @@ class _CustomdatepickerState extends State<Customdatepicker> {
                   setState(() {
                     monthdropdown = newValue!;
                   });
+
+                  updatedate();
                 },
                 items: _monthlist.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
@@ -157,7 +207,7 @@ class _CustomdatepickerState extends State<Customdatepicker> {
             ),
             SizedBox(
               width: 90,
-              height: 50,
+              height: 60,
               child: DropdownButtonFormField<int>(
                 dropdownColor: Colors.white,
                 iconEnabledColor: Colors.black,
@@ -179,6 +229,8 @@ class _CustomdatepickerState extends State<Customdatepicker> {
                   setState(() {
                     yeardropdownValue = newValue!;
                   });
+
+                  updatedate();
                 },
                 items: _yearlist.map<DropdownMenuItem<int>>((int value) {
                   return DropdownMenuItem<int>(
